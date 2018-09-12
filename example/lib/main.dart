@@ -153,9 +153,7 @@ class LocationListen extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
-    //启动客户端,这里设置ios端的精度小一点
-//    AMapLocationClient.startup(new AMapLocationOption(
-//   desiredAccuracy: CLLocationAccuracy.kCLLocationAccuracyHundredMeters));
+    //百度定位启动?
     super.initState();
   }
 
@@ -163,7 +161,8 @@ class _HomeState extends State<Home> {
   void dispose() {
 
     //注意这里关闭
-  //  AMapLocationClient.shutdown();
+    //
+    BaiduLocationClient.shutdown();
     super.dispose();
   }
 

@@ -1,10 +1,10 @@
 
 <p align="center">
-    <a href="https://pub.dartlang.org/packages/amap_location">
-        <img src="https://img.shields.io/pub/v/amap_location.svg" alt="pub package" />
+    <a href="https://pub.dartlang.org/packages/baidu_location">
+        <img src="https://img.shields.io/pub/v/baidu_location.svg" alt="pub package" />
     </a>
 </p>
-# flutter_amap_location
+# flutter_baidu_location
 
 
 ![android preview](https://github.com/jzoom/images/raw/master/location1.gif)
@@ -57,7 +57,7 @@ http://lbs.amap.com/api/ios-sdk/guide/create-project/get-key
 import 'package:baidu_location/baidu_location.dart';
    
    void main(){     
-       AMapLocationClient.setApiKey("你的key");
+       BaiduLocationClient.setApiKey("你的key");
      runApp(new MyApp());
    }
 ```
@@ -80,45 +80,45 @@ import 'package:baidu_location/baidu_location.dart';
 
 ```
 dependencies:
-  amap_location: 
+  baidu_location: 
 ```
 
 
 在要用的地方导入:
 
 ```
-import 'package:amap_location/amap_location.dart';
+import 'package:baidu_location/baidu_location.dart';
 ```
 
 先启动一下
 
 ```
- await AMapLocationClient.startup(new AMapLocationOption( desiredAccuracy:CLLocationAccuracy.kCLLocationAccuracyHundredMeters  ));
+ await BaiduLocationClient.startup(new AMapLocationOption( desiredAccuracy:CLLocationAccuracy.kCLLocationAccuracyHundredMeters  ));
 
 ```
 
 直接获取定位:
 
 ```
-await AMapLocationClient.getLocation(true)
+await BaiduLocationClient.getLocation(true)
 ```
 监听定位
 
 ```
 
-    AMapLocationClient.onLocationUpate.listen((AMapLocation loc){
+    BaiduLocationClient.onLocationUpate.listen((AMapLocation loc){
       if(!mounted)return;
       setState(() {
          ...
       });
     });
 
-    AMapLocationClient.startLocation();
+    BaiduLocationClient.startLocation();
 
 ```
 停止监听定位
 ```
-AMapLocationClient.stopLocation();
+BaiduLocationClient.stopLocation();
 
 ```
 
@@ -127,7 +127,7 @@ AMapLocationClient.stopLocation();
 @override
   void dispose() {
     //注意这里关闭
-    AMapLocationClient.shutdown();
+    BaiduLocationClient.shutdown();
     super.dispose();
   }
 ```
@@ -149,14 +149,14 @@ void _checkPersmission() async{
         return;
       }
     }
-    AMapLocationClient.onLocationUpate.listen((AMapLocation loc) {
+    BaiduLocationClient.onLocationUpate.listen((AMapLocation loc) {
       if (!mounted) return;
       setState(() {
         location = getLocationStr(loc);
       });
     });
 
-    AMapLocationClient.startLocation();
+    BaiduLocationClient.startLocation();
   }
 ```
 

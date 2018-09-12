@@ -83,7 +83,9 @@ public class BaiduLocationPlugin implements MethodCallHandler {
 
   @Override
   public synchronized void onMethodCall(MethodCall call, Result result) {
-    if (call.method.equals("getLocation")) {
+    if (call.method.equals("setKey")) {
+        result.success(true);
+    }  else if (call.method.equals("getLocation")) {
       initClient(new OnceLocationListener(result));
     }  else if (call.method.equals("startLocation")) {
       initClient(new ListeningLocationListener());
