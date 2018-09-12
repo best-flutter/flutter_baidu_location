@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../android/baidu_location.iml" filepath="$PROJECT_DIR$/../../android/baidu_location.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.flutter-io.cn/permission_handler-2.0.0/android/permission_handler.iml" filepath="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.flutter-io.cn/permission_handler-2.0.0/android/permission_handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.flutter-io.cn/simple_permissions-0.1.6/android/simple_permissions.iml" filepath="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.flutter-io.cn/simple_permissions-0.1.6/android/simple_permissions.iml" />
+    </modules>
+  </component>
+</project>

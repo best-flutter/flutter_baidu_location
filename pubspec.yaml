@@ -1,0 +1,17 @@
+name: baidu_location
+description: A new flutter plugin for baidu geo location . 百度地图定位flutter版本。
+version: 0.0.1
+author:
+homepage:
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    androidPackage: com.github.jzoom.baidulocation
+    pluginClass: BaiduLocationPlugin
