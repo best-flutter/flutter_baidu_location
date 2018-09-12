@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -19,16 +20,58 @@ class BaiduLocation{
   final String address;
   final String province;
   final double direction;
+  final double altitude;
+
+  final String streetNumber;
+
+  final String adCode;
+
+  final dynamic error;
+
 
   BaiduLocation({this.time, this.locationDescribe, this.locType,
       this.latitude, this.longitude, this.radius, this.countryCode,
       this.country, this.cityCode, this.city, this.district, this.street,
-      this.address, this.province, this.direction});
+      this.address, this.province, this.direction,this.error,this.altitude,this.streetNumber,this.adCode,});
 
   factory BaiduLocation.fromMap(dynamic value){
     return new BaiduLocation(
+      error: value['error'],
+        latitude:value['latitude'],
+      longitude:value['longitude'],
+      altitude:value['altitude'],
+
+        cityCode:value['cityCode'],
+        countryCode:value['countryCode'],
+      city: value['city'],
+      province: value['province'],
+      address: value['address'],
+        district : value['district'],
+        street:value['street'],
+        streetNumber:value['streetNumber'],
+        locationDescribe:value['locationDescribe'],
+        adCode:value['adCode'],
+
+
 
     );
+  }
+
+  @override
+  String toString() {
+    return "BaiduLocation:[$locationDescribe]";
+  }
+
+  bool isSuccess() {
+    if(Platform.isIOS){
+      return error==null;
+    }else{
+      return locType == 0;
+    }
+  }
+
+  bool hasAddress() {
+    return true;
   }
 
 }
@@ -49,7 +92,7 @@ class BaiduLocationClient {
 
   static Future<bool> setApiKey(String key) async{
     //这里的key设置错误，百度地图很恶心的居然没有回调，那么用超时来解决
-    var value = await _channel.invokeMethod('setKey');
+    var value = await _channel.invokeMethod('setKey',key).timeout(new Duration(milliseconds: 3000));
     return value as bool;
   }
 

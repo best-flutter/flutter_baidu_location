@@ -47,21 +47,29 @@
     
 }
 
--(NSDictionary*)location2map:(BMKLocation*)location{
+-(NSDictionary*)location2map:(BMKLocation*)location state:(BMKLocationNetworkState) state{
     
      BMKLocationReGeocode* rgcData = location.rgcData;
     
     return @{
-             @"locationID":location.locationID,
+            //@"locationID":location.locationID,
+             @"state":@(state),
+             @"latitude":@(location.location.coordinate.latitude),
+             @"longitude":@(location.location.coordinate.longitude),
+            @"altitude":@(location.location.altitude),
+             
              @"country":rgcData.country,
+              @"countryCode":rgcData.countryCode,
+             
              @"province":rgcData.province,
+             
              @"city":rgcData.city,
+              @"cityCode":rgcData.cityCode,
              
              @"district":rgcData.district,
              
-             @"countryCode":rgcData.countryCode,
-             @"city":rgcData.city,
-             @"cityCode":rgcData.cityCode,
+            
+            
              @"street":rgcData.street,
              @"streetNumber":rgcData.streetNumber,
              
@@ -94,38 +102,16 @@
                              });
                 }else{
                     if (location){
-                        /* if (location.location) {
-                         NSLog(@"LOC = %@",location.location);
-                         }
-                         if (location.rgcData) {
-                         NSLog(@"rgc = %@",[location.rgcData description]);
-                         }*/
-                        BMKLocationReGeocode* rgcData = location.rgcData;
                         
-                        result(@{
-                                 @"country":rgcData.country,
-                                 @"province":rgcData.province,
-                                 @"city":rgcData.city,
-                                 
-                                 @"district":rgcData.district,
-                                 
-                                 @"countryCode":rgcData.countryCode,
-                                 @"city":rgcData.city,
-                                 @"cityCode":rgcData.cityCode,
-                                 @"street":rgcData.street,
-                                 @"streetNumber":rgcData.streetNumber,
-                                 
-                                 @"adCode":rgcData.adCode,
-                                 
-                                 @"locationDescribe":rgcData.locationDescribe,
-                                 
-                                 });
+                        result([self location2map:location state:state]);
                         
                     }else{
                         
                         result(@{
                                  @"error" : @{
+                                          @"code":@"null",
                                          @"domain":@"null",
+                                         
                                          }
                                  });
                         
@@ -149,8 +135,11 @@
  *@param iError 错误号 : 为0时验证通过，具体参加BMKLocationAuthErrorCode
  */
 - (void)onCheckPermissionState:(BMKLocationAuthErrorCode)iError{
-    self.result( @(iError == 0 ? YES : NO) );
-    self.result = nil;
+    if(self.result!=nil){
+        self.result( @(iError == 0 ? YES : NO) );
+        self.result = nil;
+    }
+   
 }
 
 @end

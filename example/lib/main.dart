@@ -35,7 +35,7 @@ class _LocationGetState extends State {
           title: new Text('直接获取定位'),
         ),
         body: new Center(
-          child:  _loc == null ? new Text("正在定位") : new Text("定位成功:${_loc}"),
+          child:  _loc == null ? new Text("正在定位") : new Text("定位成功:${getLocationStr(_loc)}"),
         )
     );
   }
@@ -83,15 +83,15 @@ String getLocationStr(BaiduLocation loc) {
     return "正在定位";
   }
 
-//  if (loc.isSuccess()) {
-//    if (loc.hasAddress()) {
-//      return "定位成功: \n时间${loc.timestamp}\n经纬度:${loc.latitude} ${loc.longitude}\n 地址:${loc.formattedAddress} 城市:${loc.city} 省:${loc.province}";
-//    } else {
-//      return "定位成功: \n时间${loc.timestamp}\n经纬度:${loc.latitude} ${loc.longitude}\n ";
-//    }
-//  } else {
-//    return "定位失败: \n错误:{code=${loc.code},description=${loc.description}";
-//  }
+  if (loc.isSuccess()) {
+    if (loc.hasAddress()) {
+      return "定位成功: \n时间${loc.time}\n经纬度:${loc.latitude} ${loc.longitude}\n 地址:${loc.address} 城市:${loc.city} 省:${loc.province}";
+    } else {
+      return "定位成功: \n时间${loc.time}\n经纬度:${loc.latitude} ${loc.longitude}\n ";
+    }
+  } else {
+    return "定位失败: \n错误:";
+  }
 }
 
 class _LocationListenState extends State {
